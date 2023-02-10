@@ -29,9 +29,9 @@ case getService
         case .getService:
             return "\(baseURL)\(serviceURL)"
         }
+    }
+    var url: URL {
+        return URL(string: urlString)!
         
-        var url: URL {
-            return URL(string: urlString)!
-        }
     }
 }

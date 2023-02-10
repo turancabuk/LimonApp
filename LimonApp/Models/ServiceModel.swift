@@ -1,5 +1,5 @@
 //
-//  Service Model.swift
+//  ServiceModel.swift
 //  LimonApp
 //
 //  Created by Turan Çabuk on 10.02.2023.

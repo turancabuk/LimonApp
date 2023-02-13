@@ -6,61 +6,38 @@
 //
 import Foundation
 
-// MARK: - Aktuel
-struct Aktuel: Codable {
-    let allServices, popular: [AllService]?
-    let posts: [Post]?
+import Foundation
+
+struct MainModel: Codable {
+    let all_services: [Service]
+    let popular: [Popular]
+    let posts: [Post]
     
-    enum CodingKeys: String, CodingKey {
-        case allServices = "all_services"
-        case popular, posts
+    private enum CodingKeys: String, CodingKey {
+        case all_services
+        case popular
+        case posts
     }
 }
-// MARK: - AllService
-struct AllService: Codable {
-    let id, serviceID: Int?
-    let name, longName: String?
-    let imageURL: String?
-    let proCount: Int?
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case serviceID = "service_id"
-        case name
-        case longName = "long_name"
-        case imageURL = "image_url"
-        case proCount = "pro_count"
-    }
+struct Service: Codable {
+    let id: Int
+    let service_id: Int
+    let name: String
+    let long_name: String
+    let image_url: String?
+    let pro_count: Int?
 }
-// MARK: - Post
+struct Popular: Codable {
+    let id: Int
+    let service_id: Int
+    let name: String
+    let long_name: String
+    let image_url: String
+    let pro_count: Int
+}
 struct Post: Codable {
-    let title, category: String?
-    let imageURL: String?
-    let link: String?
-    
-    enum CodingKeys: String, CodingKey {
-        case title, category
-        case imageURL = "image_url"
-        case link
-    }
+    let link: String
+    let title: String
+    let category: String
+    let image_url: String
 }
-struct AktuelElement: Codable {
-    let id, serviceID: Int?
-    let name, longName: String?
-    let imageURL: String?
-    let proCount: Int?
-    let averageRating: Double?
-    let completedJobsOnLastMonth: Int?
-
-    enum CodingKeys: String, CodingKey {
-        case id
-        case serviceID = "service_id"
-        case name
-        case longName = "long_name"
-        case imageURL = "image_url"
-        case proCount = "pro_count"
-        case averageRating = "average_rating"
-        case completedJobsOnLastMonth = "completed_jobs_on_last_month"
-    }
-}
-

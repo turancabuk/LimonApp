@@ -9,7 +9,7 @@ import Foundation
 import Foundation
 
 struct MainModel: Codable {
-    let all_services: [Service]
+    let all_services: [Service]?
     let popular: [Popular]
     let posts: [Post]
     

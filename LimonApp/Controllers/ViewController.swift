@@ -12,8 +12,8 @@ class ViewController: UIViewController {
     //    var viewModel: MainViewModel = MainViewModel()
     //    var dataSource: [AllService] = []
     
-    @IBOutlet weak var mainCollectionView: UICollectionView!
-    @IBOutlet weak var mainTableView: UITableView!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

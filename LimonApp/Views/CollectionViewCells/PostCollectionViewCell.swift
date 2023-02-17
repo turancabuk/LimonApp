@@ -6,7 +6,14 @@
 //
 
 import UIKit
+import SDWebImage
 
 class PostCollectionViewCell: UICollectionViewCell {
+    
+    @IBOutlet weak var postsImageView: UIImageView!
+    @IBOutlet weak var postsLabel: UILabel!
+    @IBOutlet weak var postsBlogCategory: UILabel!
+    @IBOutlet weak var postsTitle: UILabel!
+    
     
 }

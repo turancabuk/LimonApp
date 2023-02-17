@@ -6,7 +6,12 @@
 //
 
 import UIKit
+import SDWebImage
 
 class PopularCollectionViewCell: UICollectionViewCell {
+    
+    @IBOutlet weak var popularImageView: UIImageView!
+    @IBOutlet weak var popularTitle: UILabel!
+    
     
 }

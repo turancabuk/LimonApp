@@ -21,6 +21,7 @@
 		5CA7F7D12996E48D0033D92A /* MainWebservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA7F7D02996E48D0033D92A /* MainWebservice.swift */; };
 		5CA7F7D32996E8260033D92A /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA7F7D22996E8260033D92A /* Constant.swift */; };
 		5CA7F7D52996F9980033D92A /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA7F7D42996F9980033D92A /* MainViewModel.swift */; };
+		5CC22E5F29A0168600AB9D91 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 5CC22E5E29A0168600AB9D91 /* SDWebImage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CC22E5F29A0168600AB9D91 /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,6 +173,9 @@
 			dependencies = (
 			);
 			name = LimonApp;
+			packageProductDependencies = (
+				5CC22E5E29A0168600AB9D91 /* SDWebImage */,
+			);
 			productName = LimonApp;
 			productReference = 5CA7F7AD2996E1F00033D92A /* LimonApp.app */;
 			productType = "com.apple.product-type.application";
@@ -199,6 +204,9 @@
 				Base,
 			);
 			mainGroup = 5CA7F7A42996E1F00033D92A;
+			packageReferences = (
+				5CC22E5D29A0168600AB9D91 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+			);
 			productRefGroup = 5CA7F7AE2996E1F00033D92A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -454,6 +462,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5CC22E5D29A0168600AB9D91 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5CC22E5E29A0168600AB9D91 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5CC22E5D29A0168600AB9D91 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5CA7F7A52996E1F00033D92A /* Project object */;
 }

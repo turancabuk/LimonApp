@@ -269,7 +269,6 @@
                                                 <connections>
                                                     <outlet property="postsBlogCategory" destination="Xb2-QF-aiW" id="Y44-8o-VMf"/>
                                                     <outlet property="postsImageView" destination="VSo-nE-5B0" id="TcN-mq-yl0"/>
-                                                    <outlet property="postsLabel" destination="iar-fE-U2q" id="oqf-LG-mw1"/>
                                                     <outlet property="postsTitle" destination="cMr-kx-v1H" id="a5y-FW-ysJ"/>
                                                 </connections>
                                             </collectionViewCell>
@@ -288,11 +287,12 @@
                         <outlet property="popularCollectionView" destination="XLB-48-qGh" id="UTi-IY-5KN"/>
                         <outlet property="postsCollectionView" destination="3us-QU-kms" id="ci8-ek-E9L"/>
                         <outlet property="serviceCollectionView" destination="dxb-Vy-kS5" id="Fqb-QS-v7h"/>
+                        <segue destination="5uc-A7-HLt" kind="presentation" identifier="toDetailsVC" modalPresentationStyle="fullScreen" id="5Og-Im-Go3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UqY-gq-qBZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1593" y="-954"/>
+            <point key="canvasLocation" x="1592.753623188406" y="-954.24107142857133"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="PgP-a3-Fns">
@@ -324,6 +324,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="rPf-w1-6FZ" kind="presentation" modalPresentationStyle="fullScreen" id="EKq-Mx-cHb"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DlX-ft-zo8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

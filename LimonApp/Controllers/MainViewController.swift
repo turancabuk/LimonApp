@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class MainViewController: UIViewController {
     
     var viewModel: MainViewModel!
     
@@ -46,10 +46,10 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
             viewModel.selectedServiceID = serviceID
             viewModel.fetchServiceModel { [weak self] result in
                 switch result {
-                case .success(let service):
+                case .success:
                     self?.assignDelegates()
                 case .failure(let error):
-                    print("error")
+                    print("\(error.localizedDescription)")
                 }
             }
         }
@@ -70,5 +70,81 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let dugunID = 59
         ServiceInfoModel.shared.choosenServiceID = dugunID
         performSegue(withIdentifier: "toServiceDetailsVC", sender: nil)
+    }
+}
+extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        if let viewModel = self.viewModel {
+            switch collectionView {
+            case self.serviceCollectionView:
+                return viewModel.serviceList.count
+            case self.popularCollectionView:
+                return viewModel.popularList.count
+            case self.postsCollectionView:
+                return viewModel.postList.count
+            default:
+                return 0
+            }
+        }else{
+            return 0
+        }
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if let viewModel = viewModel {
+            switch collectionView {
+            case self.serviceCollectionView:
+                guard let serviceList = viewModel.serviceList[indexPath.row] as? Service else {
+                    return UICollectionViewCell()
+                }
+                let serviceCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ServiceCollectionViewCellID", for: indexPath) as! ServiceCollectionViewCell
+                serviceCell.configureCell(withServiceInfo: serviceList)
+                return serviceCell
+            case self.popularCollectionView:
+                guard let popularList = viewModel.popularList[indexPath.row] as? Popular else {
+                    return UICollectionViewCell()
+                }
+                let popularCell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularCollectionViewCellID", for: indexPath) as! PopularCollectionViewCell
+                popularCell.configureCell(withPopularInfo: popularList)
+                return popularCell
+            case self.postsCollectionView:
+                guard let postList = viewModel.postList[indexPath.row] as? Post else {
+                    return UICollectionViewCell()
+                }
+                let postCell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCollectionViewCellID", for: indexPath) as! PostCollectionViewCell
+                postCell.configureCell(withPostInfo: postList)
+                return postCell
+            default:
+                return UICollectionViewCell()
+            }
+        }else{
+            return UICollectionViewCell()
+        }
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if let viewModel = viewModel {
+            switch collectionView {
+            case self.serviceCollectionView:
+                ServiceInfoModel.shared.choosenServiceID = viewModel.serviceList[indexPath.row].service_id
+                performSegue(withIdentifier: "toDetailsVC", sender: nil)
+            case self.popularCollectionView:
+                ServiceInfoModel.shared.choosenServiceID = viewModel.popularList[indexPath.row].service_id
+                performSegue(withIdentifier: "toDetailsVC", sender: nil)
+            case self.postsCollectionView:
+                let link = viewModel.postList[indexPath.row].link
+                if let url = URL(string: link) {
+                    if #available(iOS 10.0, *) {
+                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    }else{
+                        UIApplication.shared.openURL(url)
+                    }
+                }
+            default:
+                print("error")
+            }
+        }
     }
 }

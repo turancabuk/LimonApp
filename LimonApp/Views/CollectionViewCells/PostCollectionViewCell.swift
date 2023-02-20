@@ -14,6 +14,15 @@ class PostCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var postsBlogCategory: UILabel!
     @IBOutlet weak var postsTitle: UILabel!
     
+    
+    
+    
+    
+    
+    //    @IBOutlet weak var postsImageView: UIImageView!
+//    @IBOutlet weak var postsBlogCategory: UILabel!
+//    @IBOutlet weak var postsTitle: UILabel!
+    
     public func configureCell(withPostInfo postInfo: Post) {
         DispatchQueue.main.async {
             self.postsImageView.sd_setImage(with: URL(string: postInfo.image_url))

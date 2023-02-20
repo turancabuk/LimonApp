@@ -1,5 +1,5 @@
 //
-//  ServiceDetailModel.swift
+//  ServiceDetailsModel.swift
 //  LimonApp
 //
 //  Created by Turan Çabuk on 13.02.2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DetailsModel: Codable{
+struct ServiceDetailsModel: Codable{
     let id: Int?
     let service_id: Int?
     let name: String?

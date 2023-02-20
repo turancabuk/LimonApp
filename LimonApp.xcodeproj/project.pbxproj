@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5C3368DD299ABC700042A234 /* ServiceDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3368DC299ABC700042A234 /* ServiceDetailModel.swift */; };
+		5C3368DD299ABC700042A234 /* ServiceDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3368DC299ABC700042A234 /* ServiceDetailsModel.swift */; };
 		5C3368E0299D49810042A234 /* ServiceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3368DF299D49810042A234 /* ServiceCollectionViewCell.swift */; };
 		5C3368E2299D49930042A234 /* PopularCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3368E1299D49930042A234 /* PopularCollectionViewCell.swift */; };
 		5C3368E4299D499E0042A234 /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3368E3299D499E0042A234 /* PostCollectionViewCell.swift */; };
@@ -27,7 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5C3368DC299ABC700042A234 /* ServiceDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailModel.swift; sourceTree = "<group>"; };
+		5C3368DC299ABC700042A234 /* ServiceDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailsModel.swift; sourceTree = "<group>"; };
 		5C3368DF299D49810042A234 /* ServiceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCollectionViewCell.swift; sourceTree = "<group>"; };
 		5C3368E1299D49930042A234 /* PopularCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularCollectionViewCell.swift; sourceTree = "<group>"; };
 		5C3368E3299D499E0042A234 /* PostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -133,7 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				5CA7F7CB2996E29E0033D92A /* MainModel.swift */,
-				5C3368DC299ABC700042A234 /* ServiceDetailModel.swift */,
+				5C3368DC299ABC700042A234 /* ServiceDetailsModel.swift */,
 				5CC22E6029A01DE900AB9D91 /* ServiceInfoModel.swift */,
 			);
 			path = Models;
@@ -250,7 +250,7 @@
 				5CA7F7CC2996E29E0033D92A /* MainModel.swift in Sources */,
 				5CA7F7B32996E1F00033D92A /* SceneDelegate.swift in Sources */,
 				5C3368E4299D499E0042A234 /* PostCollectionViewCell.swift in Sources */,
-				5C3368DD299ABC700042A234 /* ServiceDetailModel.swift in Sources */,
+				5C3368DD299ABC700042A234 /* ServiceDetailsModel.swift in Sources */,
 				5CC22E6329A1114400AB9D91 /* DetailsViewController.swift in Sources */,
 				5CA7F7D52996F9980033D92A /* MainViewModel.swift in Sources */,
 			);

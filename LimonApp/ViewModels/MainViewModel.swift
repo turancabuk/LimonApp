@@ -19,29 +19,29 @@ final class MainViewModel {
     var serviceList = [Service]()
     var popularList = [Popular]()
     var postList = [Post]()
-    var detailList = [DetailsModel]()
+    var detailList = [ServiceDetailsModel]()
     var selectedServiceID: Int?
     
     func fetchMainModel(completion: @escaping(Result<MainModel, Error>) -> Void) {
         webservice.fetch(response: MainModel.self, with: .getHome, completion: { result in
             switch result {
             case .success(let response):
-                if let employment = response.all_services {
-                    self.serviceList = employment
-                }
+                self.serviceList = response.all_services ?? []
+                self.popularList = response.popular
+                self.postList = response.posts
                 completion(.success(response))
             case .failure(let error):
                 completion(.failure(error))
             }
         })
     }
-    func fetchServiceModel(completion: @escaping(Result<[DetailsModel], Error>) -> Void) {
+    func fetchServiceModel(completion: @escaping(Result<[ServiceDetailsModel], Error>) -> Void) {
         guard let serviceID = selectedServiceID else {
             completion(.failure(NSError(domain: "Service ID is nil", code: 0, userInfo: nil)))
             return
         }
         let endpoint = LimonAPICall.getService(serviceID: serviceID)
-        webservice.fetch(response: [DetailsModel].self, with: endpoint, completion: { result in
+        webservice.fetch(response: [ServiceDetailsModel].self, with: endpoint, completion: { result in
             switch result {
             case .success(let response):
                 self.detailList = response

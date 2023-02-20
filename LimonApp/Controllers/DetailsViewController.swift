@@ -9,6 +9,8 @@ import UIKit
 
 class DetailsViewController: UIViewController {
 
+    var viewModel: MainViewModel!
+    
     @IBOutlet weak var serviceImageView: UIImageView!
     @IBOutlet weak var serviceNameLabel: UILabel!
     @IBOutlet weak var prosLabel: UILabel!
@@ -18,7 +20,11 @@ class DetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let webservice = MainWebservice()
+        viewModel = MainViewModel(webservice: webservice)
 
     }
-
+    
+    
 }

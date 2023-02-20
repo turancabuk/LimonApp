@@ -16,7 +16,6 @@ class MainViewController: UIViewController {
     @IBOutlet weak var popularCollectionView: UICollectionView!
     @IBOutlet weak var postsCollectionView: UICollectionView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,7 +26,12 @@ class MainViewController: UIViewController {
         
         
         
-        
+        serviceCollectionView.delegate = self
+        serviceCollectionView.dataSource = self
+        popularCollectionView.delegate = self
+        popularCollectionView.dataSource = self
+        postsCollectionView.delegate = self
+        postsCollectionView.dataSource = self
         
         
         
@@ -36,7 +40,9 @@ class MainViewController: UIViewController {
             switch result {
             case .success(let mainModel):
                 DispatchQueue.main.async {
-                    self?.assignDelegates()
+                    self?.serviceCollectionView.reloadData()
+                    self?.popularCollectionView.reloadData()
+                    self?.postsCollectionView.reloadData()
                 }
             case .failure(let error):
                 print("\(error.localizedDescription)")
@@ -69,7 +75,7 @@ class MainViewController: UIViewController {
     @objc func tappedDiscountView() {
         let dugunID = 59
         ServiceInfoModel.shared.choosenServiceID = dugunID
-        performSegue(withIdentifier: "toServiceDetailsVC", sender: nil)
+        performSegue(withIdentifier: "toDetailsVC", sender: nil)
     }
 }
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

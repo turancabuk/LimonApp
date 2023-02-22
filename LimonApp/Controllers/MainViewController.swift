@@ -34,11 +34,11 @@ class MainViewController: UIViewController {
         postsCollectionView.dataSource = self
         
         
-        
+        assignDelegates()
         
         viewModel.fetchMainModel { [weak self] result in
             switch result {
-            case .success(let mainModel):
+            case .success(_):
                 DispatchQueue.main.async {
                     self?.serviceCollectionView.reloadData()
                     self?.popularCollectionView.reloadData()
@@ -46,17 +46,6 @@ class MainViewController: UIViewController {
                 }
             case .failure(let error):
                 print("\(error.localizedDescription)")
-            }
-        }
-        func didSelectService(serviceID: Int) {
-            viewModel.selectedServiceID = serviceID
-            viewModel.fetchServiceModel { [weak self] result in
-                switch result {
-                case .success:
-                    self?.assignDelegates()
-                case .failure(let error):
-                    print("\(error.localizedDescription)")
-                }
             }
         }
     }
@@ -134,9 +123,11 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         if let viewModel = viewModel {
             switch collectionView {
             case self.serviceCollectionView:
+                viewModel.selectedServiceID = viewModel.serviceList[indexPath.row].service_id
                 ServiceInfoModel.shared.choosenServiceID = viewModel.serviceList[indexPath.row].service_id
                 performSegue(withIdentifier: "toDetailsVC", sender: nil)
             case self.popularCollectionView:
+                viewModel.selectedServiceID = viewModel.popularList[indexPath.row].service_id
                 ServiceInfoModel.shared.choosenServiceID = viewModel.popularList[indexPath.row].service_id
                 performSegue(withIdentifier: "toDetailsVC", sender: nil)
             case self.postsCollectionView:

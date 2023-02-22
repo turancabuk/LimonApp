@@ -123,11 +123,15 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         if let viewModel = viewModel {
             switch collectionView {
             case self.serviceCollectionView:
-                viewModel.selectedServiceID = viewModel.serviceList[indexPath.row].service_id
-                ServiceInfoModel.shared.choosenServiceID = viewModel.serviceList[indexPath.row].service_id
+                let vc = DetailsViewController()
+//                viewModel.selectedServiceID = viewModel.serviceList[indexPath.row].service_id
+                vc.serviceID = viewModel.serviceList[indexPath.row].service_id
+//                ServiceInfoModel.shared.choosenServiceID = viewModel.serviceList[indexPath.row].service_id
+//                navigationController?.pushViewController(vc, animated: true)
                 performSegue(withIdentifier: "toDetailsVC", sender: nil)
             case self.popularCollectionView:
                 viewModel.selectedServiceID = viewModel.popularList[indexPath.row].service_id
+                DetailsViewController().serviceID = viewModel.serviceList[indexPath.row].service_id
                 ServiceInfoModel.shared.choosenServiceID = viewModel.popularList[indexPath.row].service_id
                 performSegue(withIdentifier: "toDetailsVC", sender: nil)
             case self.postsCollectionView:

@@ -18,7 +18,7 @@ final class MainViewModel {
     var serviceList = [Service]()
     var popularList = [Popular]()
     var postList = [Post]()
-    var detailList = [ServiceDetailsModel]()
+    var detailList: ServiceDetailsModel?
     var selectedServiceID: Int?
     
     func fetchMainModel(completion: @escaping(Result<MainModel, Error>) -> Void) {
@@ -34,13 +34,13 @@ final class MainViewModel {
             }
         })
     }
-    func fetchServiceModel(completion: @escaping(Result<[ServiceDetailsModel], Error>) -> Void) {
-        guard let serviceID = selectedServiceID else {
-            completion(.failure(NSError(domain: "Service ID is nil", code: 0, userInfo: nil)))
-            return
-        }
-        let endpoint = LimonAPICall.getService(serviceID: serviceID)
-        webservice.fetch(response: [ServiceDetailsModel].self, with: endpoint, completion: { result in
+    func fetchServiceModel(serviceID: Int, completion: @escaping(Result<ServiceDetailsModel, Error>) -> Void) {
+//        guard let serviceID = serviceID else {
+//            completion(.failure(NSError(domain: "Service ID is nil", code: 0, userInfo: nil)))
+//            return
+//        }
+        let endpoint = LimonAPICall.getService(serviceID: 208)
+        webservice.fetch(response: ServiceDetailsModel.self, with: endpoint, completion: { result in
             switch result {
             case .success(let response):
                 self.detailList = response

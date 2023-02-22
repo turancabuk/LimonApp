@@ -25,8 +25,11 @@ class DetailsViewController: UIViewController {
         let webservice = MainWebservice()
         viewModel = MainViewModel(webservice: webservice)
 
-
-        viewModel.fetchServiceModel { [weak self] result in
+//        guard let id = serviceID else {
+//            print("hata sebebi")
+//            return
+//        }
+        viewModel.fetchServiceModel(serviceID: 208) { [weak self] result in
             switch result {
             case .success(_):
                 self?.configureDetailView()
@@ -39,12 +42,12 @@ class DetailsViewController: UIViewController {
     }
     func configureDetailView(){
         DispatchQueue.main.async {
-            self.serviceNameLabel.text = self.viewModel.detailList[0].name
-            self.prosLabel.text = "\(self.viewModel.detailList[0].pro_count ?? 0)"
-            self.avarageLabel.text = "\(self.viewModel.detailList[0].average_rating ?? 0)"
-            self.lastMonthLabel.text = "\(self.viewModel.detailList[0].completed_jobs_on_last_month ?? 0)"
-            let url = self.self.viewModel.detailList[0].image_url!
-            self.self.serviceImageView.sd_setImage(with: URL(string: url))
+            self.serviceNameLabel.text = self.viewModel.detailList?.name
+            self.prosLabel.text = "\(self.viewModel.detailList?.pro_count ?? 0)"
+            self.avarageLabel.text = "\(self.viewModel.detailList?.average_rating ?? 0)"
+            self.lastMonthLabel.text = "\(self.viewModel.detailList?.completed_jobs_on_last_month ?? 0)"
+            let url = self.self.viewModel.detailList?.image_url!
+            self.self.serviceImageView.sd_setImage(with: URL(string: url!))
         }
     }
 }

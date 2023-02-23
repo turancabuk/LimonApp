@@ -29,7 +29,7 @@ class DetailsViewController: UIViewController {
 //            print("hata sebebi")
 //            return
 //        }
-        viewModel.fetchServiceModel(serviceID: 208) { [weak self] result in
+        viewModel.fetchServiceModel(serviceID: serviceID ?? 0) { [weak self] result in
             switch result {
             case .success(_):
                 self?.configureDetailView()
@@ -46,8 +46,8 @@ class DetailsViewController: UIViewController {
             self.prosLabel.text = "\(self.viewModel.detailList?.pro_count ?? 0)"
             self.avarageLabel.text = "\(self.viewModel.detailList?.average_rating ?? 0)"
             self.lastMonthLabel.text = "\(self.viewModel.detailList?.completed_jobs_on_last_month ?? 0)"
-            let url = self.self.viewModel.detailList?.image_url!
-            self.self.serviceImageView.sd_setImage(with: URL(string: url!))
+            let url = self.self.viewModel.detailList?.image_url ?? ""
+            self.self.serviceImageView.sd_setImage(with: URL(string: url))
         }
     }
 }

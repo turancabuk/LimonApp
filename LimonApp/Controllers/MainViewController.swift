@@ -15,6 +15,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var serviceCollectionView: UICollectionView!
     @IBOutlet weak var popularCollectionView: UICollectionView!
     @IBOutlet weak var postsCollectionView: UICollectionView!
+    let vc = DetailsViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +36,9 @@ class MainViewController: UIViewController {
         
         
         assignDelegates()
+        
+        let vc = DetailsViewController()
+
         
         viewModel.fetchMainModel { [weak self] result in
             switch result {
@@ -62,10 +66,15 @@ class MainViewController: UIViewController {
         discountImageView.addGestureRecognizer(tapGastureRecognizer)
     }
     @objc func tappedDiscountView() {
-        let dugunID = 59
-        ServiceInfoModel.shared.choosenServiceID = dugunID
-        performSegue(withIdentifier: "toDetailsVC", sender: nil)
-    }
+            let dugunID = 59
+            viewModel.serviceID = dugunID
+            performSegue(withIdentifier: "toDetailsVC", sender: nil)
+        }
+//    @objc func tappedDiscountView() {
+//        let dugunID = 56
+//        ServiceInfoModel.shared.choosenServiceID = dugunID
+//        performSegue(withIdentifier: "toDetailsVC", sender: nil)
+//    }
 }
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -123,14 +132,12 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         if let viewModel = viewModel {
             switch collectionView {
             case self.serviceCollectionView:
-                let vc = DetailsViewController()
-//                viewModel.selectedServiceID = viewModel.serviceList[indexPath.row].service_id
-                vc.serviceID = viewModel.serviceList[indexPath.row].service_id
-//                ServiceInfoModel.shared.choosenServiceID = viewModel.serviceList[indexPath.row].service_id
-//                navigationController?.pushViewController(vc, animated: true)
+                viewModel.serviceID = viewModel.serviceList[indexPath.row].service_id
                 performSegue(withIdentifier: "toDetailsVC", sender: nil)
+                
+
             case self.popularCollectionView:
-                viewModel.selectedServiceID = viewModel.popularList[indexPath.row].service_id
+                viewModel.serviceID = viewModel.popularList[indexPath.row].service_id
                 DetailsViewController().serviceID = viewModel.serviceList[indexPath.row].service_id
                 ServiceInfoModel.shared.choosenServiceID = viewModel.popularList[indexPath.row].service_id
                 performSegue(withIdentifier: "toDetailsVC", sender: nil)
@@ -148,4 +155,11 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             }
         }
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if let selectedServiceID = viewModel.serviceID,
+               let detailsViewController = segue.destination as? DetailsViewController {
+                detailsViewController.serviceID = selectedServiceID
+            }
+        }
+
 }

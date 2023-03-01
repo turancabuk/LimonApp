@@ -19,6 +19,7 @@ final class MainViewModel {
     var popularList = [Popular]()
     var postList = [Post]()
     var detailList: ServiceDetailsModel?
+    var searchResultArray: [Service] = []
     var serviceID: Int?
     
     func fetchMainModel(completion: @escaping(Result<MainModel, Error>) -> Void) {

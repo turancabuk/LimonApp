@@ -24,6 +24,7 @@
 		5CC22E5F29A0168600AB9D91 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 5CC22E5E29A0168600AB9D91 /* SDWebImage */; };
 		5CC22E6129A01DE900AB9D91 /* ServiceInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC22E6029A01DE900AB9D91 /* ServiceInfoModel.swift */; };
 		5CC22E6329A1114400AB9D91 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC22E6229A1114400AB9D91 /* DetailsViewController.swift */; };
+		5CDC47F329AE854000CE69BD /* video-team.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC47F229AE854000CE69BD /* video-team.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		5CA7F7D42996F9980033D92A /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		5CC22E6029A01DE900AB9D91 /* ServiceInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceInfoModel.swift; sourceTree = "<group>"; };
 		5CC22E6229A1114400AB9D91 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		5CDC47F229AE854000CE69BD /* video-team.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "video-team.mp4"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 		5CA7F7AF2996E1F00033D92A /* LimonApp */ = {
 			isa = PBXGroup;
 			children = (
+				5CD901B129AA6F280086DD51 /* Media */,
 				5CA7F7CA2996E2830033D92A /* Constant */,
 				5CA7F7C92996E27D0033D92A /* Webservice */,
 				5CA7F7C82996E2720033D92A /* ViewModels */,
@@ -163,6 +166,14 @@
 			path = Constant;
 			sourceTree = "<group>";
 		};
+		5CD901B129AA6F280086DD51 /* Media */ = {
+			isa = PBXGroup;
+			children = (
+				5CDC47F229AE854000CE69BD /* video-team.mp4 */,
+			);
+			path = Media;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -227,6 +238,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CDC47F329AE854000CE69BD /* video-team.mp4 in Resources */,
 				5CA7F7BD2996E1F00033D92A /* LaunchScreen.storyboard in Resources */,
 				5CA7F7BA2996E1F00033D92A /* Assets.xcassets in Resources */,
 				5CA7F7B82996E1F00033D92A /* Main.storyboard in Resources */,

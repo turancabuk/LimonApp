@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="q8H-pY-xxg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="q8H-pY-xxg">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -28,7 +28,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="PgP-a3-Fns">
             <objects>
-                <tabBarController id="q8H-pY-xxg" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBarIdentifier" id="q8H-pY-xxg" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="O4f-Dh-yKs"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="89N-6g-0ed">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="49"/>
@@ -285,7 +285,7 @@
         <!--Main View Controller-->
         <scene sceneID="ONc-5r-sKr">
             <objects>
-                <viewController id="ihv-l7-dmo" customClass="MainViewController" customModule="LimonApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainVC" id="ihv-l7-dmo" customClass="MainViewController" customModule="LimonApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jxS-uz-gxy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1520"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -312,7 +312,7 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Which service do you need?" translatesAutoresizingMaskIntoConstraints="NO" id="cdR-Ct-YJT">
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Which seravice do you need?" translatesAutoresizingMaskIntoConstraints="NO" id="cdR-Ct-YJT">
                                 <rect key="frame" x="20" y="197" width="374" height="44"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <constraints>
@@ -636,7 +636,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fqF-Y1-6wE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1764" y="-990"/>
+            <point key="canvasLocation" x="1763.7681159420292" y="-990.40178571428567"/>
         </scene>
     </scenes>
     <resources>

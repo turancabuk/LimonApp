@@ -6,15 +6,22 @@
 //
 
 import UIKit
+import AVKit
+import AVFoundation
 
 class MainViewController: UIViewController {
     
+    
+    
     var viewModel: MainViewModel!
+    let playerController = AVPlayerViewController()
+    
     
     @IBOutlet weak var discountImageView: UIImageView!
     @IBOutlet weak var serviceCollectionView: UICollectionView!
     @IBOutlet weak var popularCollectionView: UICollectionView!
     @IBOutlet weak var postsCollectionView: UICollectionView!
+ 
     let vc = DetailsViewController()
     
     override func viewDidLoad() {
@@ -36,9 +43,12 @@ class MainViewController: UIViewController {
         
         
         assignDelegates()
-        
         let vc = DetailsViewController()
-
+        
+        
+        playVideo()
+        NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: playerController.player?.currentItem)
+        
         
         viewModel.fetchMainModel { [weak self] result in
             switch result {
@@ -66,15 +76,10 @@ class MainViewController: UIViewController {
         discountImageView.addGestureRecognizer(tapGastureRecognizer)
     }
     @objc func tappedDiscountView() {
-            let dugunID = 59
-            viewModel.serviceID = dugunID
-            performSegue(withIdentifier: "toDetailsVC", sender: nil)
-        }
-//    @objc func tappedDiscountView() {
-//        let dugunID = 56
-//        ServiceInfoModel.shared.choosenServiceID = dugunID
-//        performSegue(withIdentifier: "toDetailsVC", sender: nil)
-//    }
+        let dugunID = 59
+        viewModel.serviceID = dugunID
+        performSegue(withIdentifier: "toDetailsVC", sender: nil)
+    }
 }
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -135,7 +140,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 viewModel.serviceID = viewModel.serviceList[indexPath.row].service_id
                 performSegue(withIdentifier: "toDetailsVC", sender: nil)
                 
-
+                
             case self.popularCollectionView:
                 viewModel.serviceID = viewModel.popularList[indexPath.row].service_id
                 DetailsViewController().serviceID = viewModel.serviceList[indexPath.row].service_id
@@ -156,10 +161,40 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            if let selectedServiceID = viewModel.serviceID,
-               let detailsViewController = segue.destination as? DetailsViewController {
-                detailsViewController.serviceID = selectedServiceID
-            }
+        if let selectedServiceID = viewModel.serviceID,
+           let detailsViewController = segue.destination as? DetailsViewController {
+            detailsViewController.serviceID = selectedServiceID
         }
+    }
+}
+extension MainViewController {
+     func playVideo() {
+        
+        guard let path = Bundle.main.path(forResource: "video-team", ofType: "mp4") else {
+            debugPrint("video is not found")
+            return
+        }
+        let player = AVPlayer(url: URL(fileURLWithPath: path))
+        
+        playerController.showsPlaybackControls = false
+        playerController.player = player
+        playerController.videoGravity = .resizeAspectFill
+        
 
+        
+        present(playerController, animated: true) {
+            player.play()
+        }
+    }
+    @objc func playerDidFinishPlaying(note: NSNotification) {
+        print("Method, video is finished")
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let mainVC = mainStoryboard.instantiateViewController(withIdentifier: "MainVC") as? MainViewController else {
+            return
+        }
+        self.navigationController?.pushViewController(mainVC, animated: true)
+
+
+    }
+    
 }

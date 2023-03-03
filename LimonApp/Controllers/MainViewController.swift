@@ -24,6 +24,7 @@ class MainViewController: UIViewController {
  
     let vc = DetailsViewController()
     
+    var test = 1
     override func viewDidLoad() {
         super.viewDidLoad()
         

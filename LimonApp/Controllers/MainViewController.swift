@@ -9,9 +9,8 @@ import UIKit
 import AVKit
 import AVFoundation
 
+
 class MainViewController: UIViewController {
-    
-    
     
     var viewModel: MainViewModel!
     let playerController = AVPlayerViewController()
@@ -24,16 +23,15 @@ class MainViewController: UIViewController {
  
     let vc = DetailsViewController()
     
-    var test = 1
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+
+
         let webservice = MainWebservice()
         viewModel = MainViewModel(webservice: webservice)
         navigationItem.title = "Armut App Case"
-        
-        
-        
         
         serviceCollectionView.delegate = self
         serviceCollectionView.dataSource = self
@@ -42,15 +40,10 @@ class MainViewController: UIViewController {
         postsCollectionView.delegate = self
         postsCollectionView.dataSource = self
         
-        
+
         assignDelegates()
         let vc = DetailsViewController()
-        
-        
-        playVideo()
-        NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: playerController.player?.currentItem)
-        
-        
+ 
         viewModel.fetchMainModel { [weak self] result in
             switch result {
             case .success(_):
@@ -63,6 +56,11 @@ class MainViewController: UIViewController {
                 print("\(error.localizedDescription)")
             }
         }
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        playVideo()
+        // NotificationCenter'a observer ekleme
+        NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
     }
     private func assignDelegates() {
         serviceCollectionView.delegate = self
@@ -169,33 +167,28 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
 }
 extension MainViewController {
-     func playVideo() {
-        
+    func playVideo() {
         guard let path = Bundle.main.path(forResource: "video-team", ofType: "mp4") else {
             debugPrint("video is not found")
             return
         }
         let player = AVPlayer(url: URL(fileURLWithPath: path))
-        
         playerController.showsPlaybackControls = false
         playerController.player = player
         playerController.videoGravity = .resizeAspectFill
-        
 
-        
         present(playerController, animated: true) {
             player.play()
         }
     }
     @objc func playerDidFinishPlaying(note: NSNotification) {
         print("Method, video is finished")
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let mainVC = mainStoryboard.instantiateViewController(withIdentifier: "MainVC") as? MainViewController else {
-            return
-        }
-        self.navigationController?.pushViewController(mainVC, animated: true)
-
-
+//        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        guard let mainVC = mainStoryboard.instantiateViewController(withIdentifier: "MainVC") as? MainViewController else {
+//            return
+//        }
+        let mainVC = MainViewController()
+        self.present(mainVC, animated: true, completion: nil)
     }
-    
 }
+

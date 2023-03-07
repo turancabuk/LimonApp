@@ -14,7 +14,7 @@ class MainViewController: UIViewController {
     
     var viewModel: MainViewModel!
     let playerController = AVPlayerViewController()
-    
+
     
     @IBOutlet weak var discountImageView: UIImageView!
     @IBOutlet weak var serviceCollectionView: UICollectionView!
@@ -27,20 +27,11 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         
         
-
-
         let webservice = MainWebservice()
         viewModel = MainViewModel(webservice: webservice)
         navigationItem.title = "Armut App Case"
         
-        serviceCollectionView.delegate = self
-        serviceCollectionView.dataSource = self
-        popularCollectionView.delegate = self
-        popularCollectionView.dataSource = self
-        postsCollectionView.delegate = self
-        postsCollectionView.dataSource = self
-        
-
+       playVideo()
         assignDelegates()
         let vc = DetailsViewController()
  
@@ -57,11 +48,11 @@ class MainViewController: UIViewController {
             }
         }
     }
-    override func viewWillAppear(_ animated: Bool) {
-        playVideo()
-        // NotificationCenter'a observer ekleme
-        NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        playVideo()
+//        // NotificationCenter'a observer ekleme
+//
+//    }
     private func assignDelegates() {
         serviceCollectionView.delegate = self
         serviceCollectionView.dataSource = self
@@ -176,6 +167,8 @@ extension MainViewController {
         playerController.showsPlaybackControls = false
         playerController.player = player
         playerController.videoGravity = .resizeAspectFill
+        NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: playerController.player?.currentItem)
+
 
         present(playerController, animated: true) {
             player.play()
@@ -183,12 +176,7 @@ extension MainViewController {
     }
     @objc func playerDidFinishPlaying(note: NSNotification) {
         print("Method, video is finished")
-//        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        guard let mainVC = mainStoryboard.instantiateViewController(withIdentifier: "MainVC") as? MainViewController else {
-//            return
-//        }
-        let mainVC = MainViewController()
-        self.present(mainVC, animated: true, completion: nil)
+        self.playerController.dismiss(animated: true)
     }
 }
 

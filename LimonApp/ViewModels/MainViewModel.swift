@@ -6,6 +6,7 @@
 
 import Foundation
 
+/// This is the class that calls MainModel and ServiceModel using the Network class as a generic and assigns the results returned from the Response to the relevant arrays for use in the ViewController.
 final class MainViewModel {
     
     private let webservice: MainWebserviceProtocol

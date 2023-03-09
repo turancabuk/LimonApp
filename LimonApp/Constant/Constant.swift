@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+/// This is a class with enum structure and different cases for use in Network.
 enum LimonAPICall {
     private static let baseURL = "https://my-json-server.typicode.com/engincancan/case"
     
@@ -21,7 +21,6 @@ enum LimonAPICall {
             return "\(LimonAPICall.baseURL)/service/\(serviceID)"
         }
     }
-    
     var url: URL {
         return URL(string: urlString)!
     }

@@ -14,13 +14,13 @@ class MainViewController: UIViewController {
     
     var viewModel: MainViewModel!
     let playerController = AVPlayerViewController()
-
+    
     
     @IBOutlet weak var discountImageView: UIImageView!
     @IBOutlet weak var serviceCollectionView: UICollectionView!
     @IBOutlet weak var popularCollectionView: UICollectionView!
     @IBOutlet weak var postsCollectionView: UICollectionView!
- 
+    
     let vc = DetailsViewController()
     
     override func viewDidLoad() {
@@ -31,10 +31,10 @@ class MainViewController: UIViewController {
         viewModel = MainViewModel(webservice: webservice)
         navigationItem.title = "Armut App Case"
         
-       playVideo()
+        playVideo()
         assignDelegates()
         let vc = DetailsViewController()
- 
+        
         viewModel.fetchMainModel { [weak self] result in
             switch result {
             case .success(_):
@@ -48,11 +48,6 @@ class MainViewController: UIViewController {
             }
         }
     }
-//    override func viewWillAppear(_ animated: Bool) {
-//        playVideo()
-//        // NotificationCenter'a observer ekleme
-//
-//    }
     private func assignDelegates() {
         serviceCollectionView.delegate = self
         serviceCollectionView.dataSource = self
@@ -168,8 +163,8 @@ extension MainViewController {
         playerController.player = player
         playerController.videoGravity = .resizeAspectFill
         NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: playerController.player?.currentItem)
-
-
+        
+        
         present(playerController, animated: true) {
             player.play()
         }

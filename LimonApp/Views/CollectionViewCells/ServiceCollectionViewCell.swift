@@ -11,13 +11,7 @@ class ServiceCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var serviceImageView: UIImageView!
     @IBOutlet weak var serviceNameLabel: UILabel!
-    
-    
-    
-    
-    //    @IBOutlet weak var serviceImageView: UIImageView!
-//    @IBOutlet weak var serviceNameLabel: UILabel!
-    
+
     let serviceNameArray: [String:String] = [
         "Tadilat": "tadilat",
         "Temizlik": "temizlik",

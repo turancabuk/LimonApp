@@ -12,20 +12,18 @@ import AVFoundation
 
 class MainViewController: UIViewController {
     
+    /// Variables.
     var viewModel: MainViewModel!
     let playerController = AVPlayerViewController()
-    
+    let vc = DetailsViewController()
     
     @IBOutlet weak var discountImageView: UIImageView!
     @IBOutlet weak var serviceCollectionView: UICollectionView!
     @IBOutlet weak var popularCollectionView: UICollectionView!
     @IBOutlet weak var postsCollectionView: UICollectionView!
     
-    let vc = DetailsViewController()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         let webservice = MainWebservice()
         viewModel = MainViewModel(webservice: webservice)
@@ -35,6 +33,7 @@ class MainViewController: UIViewController {
         assignDelegates()
         let vc = DetailsViewController()
         
+        /// Thread structure used to update CollectionViews when ViewModel's FetchMainModel function is called.
         viewModel.fetchMainModel { [weak self] result in
             switch result {
             case .success(_):
@@ -67,7 +66,7 @@ class MainViewController: UIViewController {
     }
 }
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
+    /// Function to determine the number of CollectionView Cells.
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if let viewModel = self.viewModel {
@@ -85,6 +84,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return 0
         }
     }
+    /// Function to specify the services to be displayed in CollectionView Cells.
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if let viewModel = viewModel {
@@ -118,14 +118,12 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        /// Function to specify selected services in CollectionView Cells.
         if let viewModel = viewModel {
             switch collectionView {
             case self.serviceCollectionView:
                 viewModel.serviceID = viewModel.serviceList[indexPath.row].service_id
                 performSegue(withIdentifier: "toDetailsVC", sender: nil)
-                
-                
             case self.popularCollectionView:
                 viewModel.serviceID = viewModel.popularList[indexPath.row].service_id
                 DetailsViewController().serviceID = viewModel.serviceList[indexPath.row].service_id
@@ -153,6 +151,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
 }
 extension MainViewController {
+    /// SplashScreen Video Play Function.
     func playVideo() {
         guard let path = Bundle.main.path(forResource: "video-team", ofType: "mp4") else {
             debugPrint("video is not found")
@@ -163,8 +162,6 @@ extension MainViewController {
         playerController.player = player
         playerController.videoGravity = .resizeAspectFill
         NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: playerController.player?.currentItem)
-        
-        
         present(playerController, animated: true) {
             player.play()
         }

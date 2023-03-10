@@ -7,8 +7,10 @@
 import UIKit
 import SDWebImage
 
+/// Class with variables, connections and functions of the detail screen.
 class DetailsViewController: UIViewController {
     
+    /// Variables.
     var viewModel: MainViewModel!
     var serviceID: Int?
     
@@ -18,17 +20,12 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var avarageLabel: UILabel!
     @IBOutlet weak var lastMonthLabel: UILabel!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let webservice = MainWebservice()
         viewModel = MainViewModel(webservice: webservice)
 
-//        guard let id = serviceID else {
-//            print("hata sebebi")
-//            return
-//        }
         viewModel.fetchServiceModel(serviceID: serviceID ?? 0) { [weak self] result in
             switch result {
             case .success(_):
@@ -37,8 +34,6 @@ class DetailsViewController: UIViewController {
                 print("HATA: JSONDAN")
             }
         }
-        
-
     }
     func configureDetailView(){
         DispatchQueue.main.async {
